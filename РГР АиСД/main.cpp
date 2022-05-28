@@ -7,15 +7,6 @@
 
 int main()
 {
-  //RBT< int, int, std::less< int > > s;
-  //for (int i = 0; i < 1000; i++)
-  //{
-  //  iter = 0;
-  //  s.insert(i, i);
-  //  std::cout << iter << '\n';
-  //}
-  //s.printTree(std::cout);
-
   Dictionary dict;
 
   while (!std::cin.eof())
