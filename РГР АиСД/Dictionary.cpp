@@ -31,13 +31,19 @@ bool Dictionary::deleteWord(const std::string& english)
   return translations.remove(english);
 }
 
-bool Dictionary::translate(const std::string& english)
+bool Dictionary::translate(const std::string& english, std::ostream& out)
 {
-  /*try
+  try
   {
-    translations.at(english);
-  }*/
-  return true;
+    SetString setStr;
+    setStr = translations.at(english);
+    out << setStr << '\n';
+    return true;
+  }
+  catch (const std::out_of_range&)
+  {
+    return false;
+  }
 }
 
 void Dictionary::print(std::ostream& out)

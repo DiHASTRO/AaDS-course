@@ -276,7 +276,7 @@ Value_t& RBT< Key_t, Value_t, KeyComp >::at(const Key_t& key)
   }
   else
   {
-    throw std::invalid_argument("No element with such key\n");
+    throw std::out_of_range("No element with such key\n");
   }
 }
 

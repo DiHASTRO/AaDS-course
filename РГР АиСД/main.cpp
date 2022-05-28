@@ -39,6 +39,16 @@ int main()
         std::cout << "No such word!\n";
       }
     }
+    else if (command == "TRANSLATE")
+    {
+      std::string eng;
+      std::cout << "English: ";
+      std::cin >> eng;
+      if (!dict.translate(eng, std::cout))
+      {
+        std::cout << "No such word!\n";
+      }
+    }
     else if (command == "DELETE_TRANSLATE")
     {
       std::string eng;
