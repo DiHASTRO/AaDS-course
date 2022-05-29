@@ -332,88 +332,9 @@ void RBT<Key_t, Value_t, KeyComp>::insert_or_transform(const Key_t& key, const V
 template< typename K, typename V, typename C >
 typename RBT< K, V, C >::Node* RBT< K, V, C >::insertNode(const K& key, const V& value)
 {
-//  if (root_->isNIL())
-//  {
-//    root_->key_ = new K(key);
-//    root_->value_ = new V(value);
-//    root_->left_ = new Node();
-//    root_->left_->p_ = root_;
-//    root_->right_ = new Node();
-//    root_->right_->p_ = root_;
-//
-//#ifdef TEST_MODE
-//    iter += 7;
-//#endif
-//    return root_;
-//  }
-//  else
-//  {
-//    Node* current = root_;
-//#ifdef TEST_MODE
-//    iter += 1;
-//#endif
-//    while (true)
-//    {
-//      if (key == *current->key_)
-//      {
-//#ifdef TEST_MODE
-//        iter += 1;
-//#endif
-//        return nullptr;
-//      }
-//      else if (C()(key, *current->key_))
-//      {
-//#ifdef TEST_MODE
-//        iter += 2;
-//#endif
-//        if (current->left_->isNIL())
-//        {
-//          current->left_->key_ = new K(key);
-//          current->left_->value_ = new V(value);
-//          current->left_->p_ = current;
-//          current->left_->isBlack = false;
-//          current->left_->left_ = new Node();
-//          current->left_->left_->p_ = current;
-//          current->left_->right_ = new Node();
-//          current->left_->right_->p_ = current;
-//
-//#ifdef TEST_MODE
-//          iter += 9;
-//#endif
-//          return current->left_;
-//        }
-//        current = current->left_;
-//#ifdef TEST_MODE
-//        iter += 2;
-//#endif
-//      }
-//      else
-//      {
-//#ifdef TEST_MODE
-//        iter += 2;
-//#endif
-//        if (current->right_->isNIL())
-//        {
-//          current->right_->key_ = new K(key);
-//          current->right_->value_ = new V(value);
-//          current->right_->p_ = current;
-//          current->right_->isBlack = false;
-//          current->right_->left_ = new Node();
-//          current->right_->left_->p_ = current;
-//          current->right_->right_ = new Node();
-//          current->right_->right_->p_ = current;
-//#ifdef TEST_MODE
-//          iter += 9;
-//#endif
-//          return current->right_;
-//        }
-//        current = current->right_;
-//#ifdef TEST_MODE
-//        iter += 2;
-//#endif
-//      }
-//    }
-//  }
+#ifdef TEST_MODE
+  iter += 1;
+#endif
   Node* interacted = nullptr;
   insertNode(key, value, interacted);
   return interacted;
