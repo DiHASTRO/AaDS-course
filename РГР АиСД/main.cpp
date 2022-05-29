@@ -1,12 +1,40 @@
+#define TEST_MODE
+#define COLORFUL
+
 #include <iostream>
 #include <functional>
-#define TEST_MODE
 #include "RBT.hpp"
 #include "SetString.hpp"
 #include "Dictionary.hpp"
 
+#ifdef TEST_MODE
+namespace
+{
+  struct IntComparator
+  {
+    bool operator()(int first, int second)
+    {
+      return first < second;
+    }
+  };
+}
+#endif
+
 int main()
 {
+#ifdef TEST_MODE
+  RBT< int, int, IntComparator > numbers;
+  for (int i = 0; i < 1000; i++)
+  {
+    // iter = 0;
+    numbers.insert(i, i);
+    /*if (i % 10000 == 0)
+    {
+      std::cout << iter << '\n';
+    }*/
+  }
+  numbers.printTree(std::cout);
+#else
   Dictionary dict;
 
   while (!std::cin.eof())
@@ -67,5 +95,6 @@ int main()
       std::cout << "No such command!\n";
     }
   }
+#endif
   return 0;
 }

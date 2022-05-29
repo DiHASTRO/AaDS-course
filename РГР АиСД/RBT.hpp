@@ -32,10 +32,10 @@ class RBT
 {
 public:
   RBT();
-  RBT(const RBT< Key_t, Value_t, KeyComp >& other) = delete;
+  RBT(const RBT< Key_t, Value_t, KeyComp >& other);
   RBT(RBT< Key_t, Value_t, KeyComp >&& other) noexcept;
 
-  RBT< Key_t, Value_t, KeyComp >& operator=(const RBT< Key_t, Value_t, KeyComp >& other) = delete;
+  RBT< Key_t, Value_t, KeyComp >& operator=(const RBT< Key_t, Value_t, KeyComp >& other);
   RBT< Key_t, Value_t, KeyComp >& operator=(RBT< Key_t, Value_t, KeyComp >&& other) noexcept;
 
   virtual ~RBT();
@@ -69,6 +69,8 @@ protected:
   };
 
   Node* root_;
+
+  void copyTree(Node*& in, Node* from);
 
   size_t getHeight(const Node* node) const;
 
@@ -111,7 +113,7 @@ RBT< K, V, C >::Node::Node():
   left_(nullptr),
   right_(nullptr),
   isBlack(true)
-{};
+{}
 
 template< typename Key_t, typename Value_t, typename KeyComp >
 bool RBT< Key_t, Value_t, KeyComp >::Node::isNIL()
@@ -132,12 +134,30 @@ RBT< K, V, C >::RBT():
 {}
 
 template< typename K, typename V, typename C >
+RBT< K, V, C >::RBT(const RBT< K, V, C >& other):
+  root_(new Node())
+{
+  copyTree(root_, other.root_);
+}
+
+template< typename K, typename V, typename C >
 RBT< K, V, C >::RBT(RBT< K, V, C >&& other) noexcept:
   root_(nullptr)
 {
   std::swap(root_, other.root_);
 }
 
+
+template< typename K, typename V, typename C >
+RBT< K, V, C >& RBT< K, V, C >::operator=(const RBT< K, V, C >& other)
+{
+  if (this != &other)
+  {
+    RBT< K, V, C > temp(other);
+    std::swap(root_, temp.root_);
+  }
+  return *this;
+}
 
 template< typename K, typename V, typename C >
 RBT< K, V, C >& RBT< K, V, C >::operator=(RBT< K, V, C >&& other) noexcept
@@ -338,6 +358,41 @@ typename RBT< K, V, C >::Node* RBT< K, V, C >::insertNode(const K& key, const V&
   Node* interacted = nullptr;
   insertNode(key, value, interacted);
   return interacted;
+}
+
+template< typename Key_t, typename Value_t, typename KeyComp >
+void RBT<Key_t, Value_t, KeyComp >::copyTree(Node*& in, Node* from)
+{
+  in->isBlack = from->isBlack;
+  if (!from->isNIL())
+  {
+    in->key_ = new Key_t(*from->key_);
+    in->value_ = new Key_t(*from->value_);
+  }
+  Node* left = nullptr;
+  if (from->left_)
+  {
+    left = new Node();
+    copyTree(left, from->left_);
+  }
+  Node* right = nullptr;
+  if (from->right_)
+  {
+    right = new Node();
+    copyTree(right, from->right_);
+  }
+
+  if (left)
+  {
+    left->p_ = in;
+    in->left_ = left;
+  }
+
+  if (right)
+  {
+    in->right_ = right;
+    right->p_ = in;
+  }
 }
 
 template< typename K, typename V, typename C >
