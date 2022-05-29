@@ -52,7 +52,9 @@ public:
   void printValues(std::ostream& out) const;
   void printTree(std::ostream& out) const;
   Value_t& at(const Key_t& key);
-protected:
+
+  bool empty() const;
+private:
   struct Node
   {
     Node();
@@ -298,6 +300,12 @@ Value_t& RBT< Key_t, Value_t, KeyComp >::at(const Key_t& key)
   {
     throw std::out_of_range("No element with such key\n");
   }
+}
+
+template< typename Key_t, typename Value_t, typename KeyComp >
+bool RBT< Key_t, Value_t, KeyComp >::empty() const
+{
+  return root_->isNIL();
 }
 
 template< typename K, typename V, typename C >

@@ -5,7 +5,12 @@
 
 struct StringComparator
 {
-	bool operator()(const std::string& first, const std::string& second);
+	bool operator()(const std::string&, const std::string&);
+};
+
+struct IntComparator
+{
+  bool operator()(int, int);
 };
 
 #endif

@@ -13,6 +13,8 @@ public:
   bool deleteWord(const std::string& english);
   bool translate(const std::string& english, std::ostream& out);
   void print(std::ostream& out);
+
+  bool empty() const;
 private:
   RBT< std::string, SetString, StringComparator > translations;
 };

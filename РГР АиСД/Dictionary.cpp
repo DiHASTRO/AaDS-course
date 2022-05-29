@@ -20,7 +20,7 @@ bool Dictionary::deleteTranslate(const std::string& english, const std::string& 
     }
     return true;
   }
-  catch (const std::invalid_argument&)
+  catch (const std::out_of_range&)
   {
     return false;
   }
@@ -49,4 +49,9 @@ bool Dictionary::translate(const std::string& english, std::ostream& out)
 void Dictionary::print(std::ostream& out)
 {
   translations.printValues(out);
+}
+
+bool Dictionary::empty() const
+{
+  return translations.empty();
 }

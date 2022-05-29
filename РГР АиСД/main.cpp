@@ -1,5 +1,8 @@
-#define TEST_MODE
+// #define TEST_MODE
+
+#ifdef TREE_OUT
 #define COLORFUL
+#endif
 
 #include <iostream>
 #include <functional>
@@ -7,31 +10,25 @@
 #include "SetString.hpp"
 #include "Dictionary.hpp"
 
-#ifdef TEST_MODE
-namespace
-{
-  struct IntComparator
-  {
-    bool operator()(int first, int second)
-    {
-      return first < second;
-    }
-  };
-}
-#endif
 
 int main()
 {
 #ifdef TEST_MODE
   RBT< int, int, IntComparator > numbers;
-  for (int i = 0; i < 1000; i++)
+  for (int i = 0; i < 1000000; i++)
   {
-    // iter = 0;
+    iter = 0;
     numbers.insert(i, i);
-    /*if (i % 10000 == 0)
+    if (i % 10000 == 0)
     {
       std::cout << iter << '\n';
-    }*/
+    }
+  }
+#elif defined TREE_OUT
+  RBT< int, int, IntComparator > numbers;
+  for (int i = 0; i < 100; i++)
+  {
+    numbers.insert(i, i);
   }
   numbers.printTree(std::cout);
 #else
@@ -55,7 +52,14 @@ int main()
     }
     else if (command == "PRINT_ALL")
     {
-      dict.print(std::cout);
+      if (!dict.empty())
+      {
+        dict.print(std::cout);
+      }
+      else
+      {
+        std::cout << "<DICTIONARY IS EMPTY>\n";
+      }
     }
     else if (command == "DELETE_ENGLISH")
     {
@@ -64,7 +68,7 @@ int main()
       std::cin >> eng;
       if (!dict.deleteWord(eng))
       {
-        std::cout << "No such word!\n";
+        std::cout << "<NO SUCH WORD>\n";
       }
     }
     else if (command == "TRANSLATE")
@@ -74,7 +78,7 @@ int main()
       std::cin >> eng;
       if (!dict.translate(eng, std::cout))
       {
-        std::cout << "No such word!\n";
+        std::cout << "<NO SUCH WORD>\n";
       }
     }
     else if (command == "DELETE_TRANSLATE")
@@ -87,12 +91,12 @@ int main()
       std::cin >> rus;
       if (!dict.deleteTranslate(eng, rus))
       {
-        std::cout << "No such word!\n";
+        std::cout << "<NO SUCH WORD>\n";
       }
     }
     else
     {
-      std::cout << "No such command!\n";
+      std::cout << "<NO SUCH COMMAND>\n";
     }
   }
 #endif
