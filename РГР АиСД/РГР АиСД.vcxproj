@@ -142,8 +142,6 @@
     <ClCompile Include="Comparators.cpp" />
     <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Set.cpp" />
-    <ClCompile Include="Transformators.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Comparators.hpp" />
