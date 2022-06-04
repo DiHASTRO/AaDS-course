@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="SetString.cpp">
+    <ClCompile Include="Set.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Dictionary.cpp">
@@ -35,7 +35,7 @@
     <ClInclude Include="RBT.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="SetString.hpp">
+    <ClInclude Include="Set.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Dictionary.hpp">

@@ -1,12 +1,17 @@
 #ifndef TRANSFORMATORS_HPP
 #define TRANSFORMATORS_HPP
 
-#include "SetString.hpp"
+#include "Set.hpp"
 
+template < typename T, typename Comp >
 struct SetTransformator
 {
-  SetString forUnion;
-  SetString operator()(SetString first);
+  Set< T, Comp > forUnion;
+  Set< T, Comp > operator()(Set< T, Comp > first)
+  {
+    first.unionSets(forUnion);
+    return first;
+  };
 };
 
 #endif

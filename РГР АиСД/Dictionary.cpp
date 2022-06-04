@@ -5,7 +5,7 @@ bool Dictionary::insertTranslate(const std::string& english, const std::string& 
 {
   SetString temp;
   temp.insertItem(russian);
-  translations.insert_or_transform(english, temp, SetTransformator{ temp });
+  translations.insert_or_transform(english, temp, SetTransformator< std::string, StringComparator >{ temp });
   return true;
 }
 

@@ -2,7 +2,7 @@
 #define DICTIONARY_HPP
 
 #include "RBT.hpp"
-#include "SetString.hpp"
+#include "Set.hpp"
 #include "Comparators.hpp"
 
 class Dictionary
@@ -16,6 +16,7 @@ public:
 
   bool empty() const;
 private:
+  using SetString = Set< std::string, StringComparator >;
   RBT< std::string, SetString, StringComparator > translations;
 };
 
