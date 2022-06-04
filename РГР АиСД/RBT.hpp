@@ -353,7 +353,7 @@ void RBT<Key_t, Value_t, KeyComp>::insert_or_transform(const Key_t& key, const V
     Value_t tempValue = *forBalance->value_;
     delete forBalance->value_;
 
-    forBalance->value_ = new Value_t(trans(value, tempValue));
+    forBalance->value_ = new Value_t(trans(tempValue));
   }
 }
 

@@ -1,4 +1,4 @@
-#define TREE_OUT
+// #define TREE_OUT
 
 #ifdef TREE_OUT
 #define COLORFUL
@@ -33,14 +33,14 @@ int main()
   }
   for (int i = 0; i < 100; i++)
   {
-    numbers.insert_or_transform(i, 1.0 * i * i, [&](double curr, double curr1)
+    numbers.insert_or_transform(i, 1.0 * i * i, [&](double curr)
       {
-        curr = std::powl(curr, 1.5);
+        return std::powl(curr, 1.5);
       });
   }
 
   numbers.printTree(std::cout);
-  std::cout << '\n' << numbers.at(3) << '\n';
+  std::cout << '\n' << numbers.at(10) << '\n';
 #else
   Dictionary dict;
 

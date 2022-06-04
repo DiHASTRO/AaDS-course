@@ -5,8 +5,8 @@
 
 struct SetTransformator
 {
-  const SetString& forUnion;
-  SetString operator()(SetString first, SetString last);
+  SetString forUnion;
+  SetString operator()(SetString first);
 };
 
 #endif

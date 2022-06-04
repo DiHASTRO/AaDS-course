@@ -13,7 +13,7 @@ bool Dictionary::deleteTranslate(const std::string& english, const std::string& 
 {
   try
   {
-    SetString trans = translations.at(english);
+    SetString& trans = translations.at(english);
     if (!trans.deleteItem(russian))
     {
       return false;

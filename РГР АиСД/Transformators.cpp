@@ -1,7 +1,7 @@
 #include "Transformators.hpp"
 
-SetString SetTransformator::operator()(SetString first, SetString last)
+SetString SetTransformator::operator()(SetString first)
 {
-  first.unionSets(last);
+  first.unionSets(forUnion);
   return first;
 }
