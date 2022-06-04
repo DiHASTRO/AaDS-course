@@ -1,15 +1,11 @@
 // #define TREE_OUT
 
 #ifdef TREE_OUT
-#define COLORFUL
+  #define COLORFUL
 #endif
 
 #include <iostream>
-#include <functional>
-#include "RBT.hpp"
-#include "SetString.hpp"
 #include "Dictionary.hpp"
-
 
 int main()
 {

@@ -1,4 +1,6 @@
 #include "SetString.hpp"
+#include <stdexcept>
+#include <ostream>
 
 struct StringComparator
 {

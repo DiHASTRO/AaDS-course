@@ -1,7 +1,8 @@
 ﻿#ifndef RBT_HPP
 #define RBT_HPP
 
-#include <iostream>
+#include <ostream>
+#include <stdexcept>
 #include "Transformators.hpp"
 
 #ifdef COLORFUL
@@ -11,7 +12,6 @@
 #include <cstring>
 #include <windows.h>
 #undef max
-
 
 namespace
 {
@@ -83,7 +83,7 @@ private:
   bool insertNode(const Key_t& key, const Value_t& value, Node*& interacted);
   void printPart(const std::string& prefix, Node* node, bool isLeft, std::ostream& out) const;
   
-  void inorderWalk(Node* node) const;
+  void inorderWalk(Node* node, std::ostream& out) const;
 
   Node* getGrandpa(Node* grandson);
   Node* getUncle(Node* nephew);
@@ -278,7 +278,7 @@ void RBT< Key_t, Value_t, KeyComp>::printValues(std::ostream& out) const
 {
   if (!root_->isNIL())
   {
-    inorderWalk(root_);
+    inorderWalk(root_, out);
   }
 }
 
@@ -948,16 +948,16 @@ void RBT< K, V, C >::printPart(const std::string& prefix, Node* node, bool isLef
 }
 
 template< typename Key_t, typename Value_t, typename KeyComp >
-void RBT< Key_t, Value_t, KeyComp >::inorderWalk(Node* node) const
+void RBT< Key_t, Value_t, KeyComp >::inorderWalk(Node* node, std::ostream& out) const
 {
   if (!node->left_->isNIL())
   {
-    inorderWalk(node->left_);
+    inorderWalk(node->left_, out);
   }
-  std::cout << *node->key_ << " - " << *node->value_ << '\n';
+  out << *node->key_ << " - " << *node->value_ << '\n';
   if (!node->right_->isNIL())
   {
-    inorderWalk(node->right_);
+    inorderWalk(node->right_, out);
   }
 }
 

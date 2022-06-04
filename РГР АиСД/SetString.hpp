@@ -1,7 +1,7 @@
 #ifndef SET_STRING_H
 #define SET_STRING_H
 
-#include <ostream>
+#include <iosfwd>
 #include <string>
 
 class SetString
