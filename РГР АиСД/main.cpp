@@ -1,4 +1,4 @@
-// #define TEST_MODE
+#define TREE_OUT
 
 #ifdef TREE_OUT
 #define COLORFUL
@@ -18,19 +18,29 @@ int main()
   for (int i = 0; i < 1000000; i++)
   {
     iter = 0;
-    numbers.insert(i, i);
+    numbers.insert(i, i * i);
     if (i % 10000 == 0)
     {
       std::cout << iter << '\n';
     }
   }
+  std::cout << numbers.at(999999);
 #elif defined TREE_OUT
-  RBT< int, int, IntComparator > numbers;
+  RBT< int, double, IntComparator > numbers;
   for (int i = 0; i < 100; i++)
   {
-    numbers.insert(i, i);
+    numbers.insert(i, 1.0 * i * i);
   }
+  for (int i = 0; i < 100; i++)
+  {
+    numbers.insert_or_transform(i, 1.0 * i * i, [&](double curr, double curr1)
+      {
+        curr = std::powl(curr, 1.5);
+      });
+  }
+
   numbers.printTree(std::cout);
+  std::cout << '\n' << numbers.at(3) << '\n';
 #else
   Dictionary dict;
 

@@ -426,17 +426,17 @@ typename RBT< K, V, C >::Node* RBT< K, V, C >::searchNode(const K& key) const
   Node* current = root_;
   while (!current->isNIL())
   {
-    if (key == *current->key_)
-    {
-      return current;
-    }
-    else if (C()(key, *current->key_))
+    if (C{}(key, *current->key_))
     {
       current = current->left_;
     }
-    else
+    else if (C{}(*current->key_, key))
     {
       current = current->right_;
+    }
+    else
+    {
+      return current;
     }
   }
   return nullptr;
@@ -860,15 +860,7 @@ bool RBT< K, V, C >::insertNode(const K& key, const V& value, Node*& interacted)
 #endif
     while (true)
     {
-      if (key == *current->key_)
-      {
-#ifdef TEST_MODE
-        iter += 1;
-#endif
-        interacted = current;
-        return false;
-      }
-      else if (C()(key, *current->key_))
+      if (C{}(key, *current->key_))
       {
 #ifdef TEST_MODE
         iter += 2;
@@ -895,7 +887,7 @@ bool RBT< K, V, C >::insertNode(const K& key, const V& value, Node*& interacted)
         iter += 2;
 #endif
       }
-      else
+      else if (C{}(*current->key_, key))
       {
 #ifdef TEST_MODE
         iter += 2;
@@ -920,6 +912,14 @@ bool RBT< K, V, C >::insertNode(const K& key, const V& value, Node*& interacted)
 #ifdef TEST_MODE
         iter += 2;
 #endif
+      }
+      else
+      {
+#ifdef TEST_MODE
+        iter += 1;
+#endif
+        interacted = current;
+        return false;
       }
     }
   }
