@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include "Dictionary.hpp"
+#include "Executors.hpp"
 
 int main()
 {
@@ -45,64 +46,13 @@ int main()
     std::string command = "";
     std::cout << "Command: ";
     std::cin >> command;
-    if (command == "INSERT")
+    try
     {
-      std::string eng;
-      std::cout << "English: ";
-      std::cin >> eng;
-      std::string rus;
-      std::cout << "Russian: ";
-      std::cin >> rus;
-
-      dict.insertTranslate(eng, rus);
+      executeCommand(dict, command, std::cout, std::cin);
     }
-    else if (command == "PRINT_ALL")
+    catch (const std::invalid_argument& e)
     {
-      if (!dict.empty())
-      {
-        dict.print(std::cout);
-      }
-      else
-      {
-        std::cout << "<DICTIONARY IS EMPTY>\n";
-      }
-    }
-    else if (command == "DELETE_ENGLISH")
-    {
-      std::string eng;
-      std::cout << "English: ";
-      std::cin >> eng;
-      if (!dict.deleteWord(eng))
-      {
-        std::cout << "<NO SUCH WORD>\n";
-      }
-    }
-    else if (command == "TRANSLATE")
-    {
-      std::string eng;
-      std::cout << "English: ";
-      std::cin >> eng;
-      if (!dict.translate(eng, std::cout))
-      {
-        std::cout << "<NO SUCH WORD>\n";
-      }
-    }
-    else if (command == "DELETE_TRANSLATE")
-    {
-      std::string eng;
-      std::cout << "English: ";
-      std::cin >> eng;
-      std::string rus;
-      std::cout << "Russian: ";
-      std::cin >> rus;
-      if (!dict.deleteTranslate(eng, rus))
-      {
-        std::cout << "<NO SUCH WORD>\n";
-      }
-    }
-    else
-    {
-      std::cout << "<NO SUCH COMMAND>\n";
+      std::cerr << e.what();
     }
   }
 #endif
