@@ -8,6 +8,8 @@
 class Dictionary
 {
 public:
+  Dictionary() = default;
+
   bool insertTranslate(const std::string& english, const std::string& russian);
   bool deleteTranslate(const std::string& english, const std::string& russian);
   bool deleteWord(const std::string& english);

@@ -38,7 +38,7 @@ public:
   RBT< Key_t, Value_t, KeyComp >& operator=(const RBT< Key_t, Value_t, KeyComp >& other);
   RBT< Key_t, Value_t, KeyComp >& operator=(RBT< Key_t, Value_t, KeyComp >&& other) noexcept;
 
-  virtual ~RBT();
+  ~RBT();
 
   size_t getHeight() const;
 
@@ -923,7 +923,6 @@ bool RBT< K, V, C >::insertNode(const K& key, const V& value, Node*& interacted)
       }
     }
   }
-
 }
 
 template< typename K, typename V, typename C >

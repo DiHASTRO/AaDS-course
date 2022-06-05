@@ -16,16 +16,17 @@ public:
 
 	bool insertItem(const T& item);
 	bool deleteItem(const T& item);
-	bool isThere(const T& item);
-
+	bool isThere(const T& item) const;
 	int getCount() const;
+
+	bool empty() const;
 
 	void unionSets(Set< T, Comp >& other);
 
 	template < typename T, typename Comp >
 	friend std::ostream& operator<<(std::ostream& stream, const Set< T, Comp >& dict);
 
-	virtual ~Set();
+	~Set();
 private:
 	void swap(Set< T, Comp >& other) noexcept;
 
@@ -143,7 +144,7 @@ bool Set< T, Comp >::deleteItem(const T& item)
 }
 
 template < typename T, typename Comp >
-bool Set< T, Comp >::isThere(const T& item)
+bool Set< T, Comp >::isThere(const T& item) const
 {
 	Node* current = head_;
 	while (current && !Comp{}(item, current->item_))
@@ -158,6 +159,12 @@ template < typename T, typename Comp >
 int Set< T, Comp >::getCount() const
 {
 	return count_;
+}
+
+template < typename T, typename Comp >
+bool Set< T, Comp >::empty() const
+{
+	return !head_;
 }
 
 template < typename T, typename Comp >
