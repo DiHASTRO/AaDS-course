@@ -335,7 +335,7 @@ bool RBT< K, V, C >::insert(const K& key, const V& value)
 
 template< typename Key_t, typename Value_t, typename KeyComp >
 template< class Transformator >
-void RBT<Key_t, Value_t, KeyComp>::insert_or_transform(const Key_t& key, const Value_t& value, Transformator trans)
+void RBT< Key_t, Value_t, KeyComp >::insert_or_transform(const Key_t& key, const Value_t& value, Transformator trans)
 {
   Node* forBalance = nullptr;
   bool isAlreadyIn = !insertNode(key, value, forBalance);
