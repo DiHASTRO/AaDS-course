@@ -346,7 +346,6 @@ void RBT< Key_t, Value_t, KeyComp >::insert_or_transform(const Key_t& key, const
   if (!isAlreadyIn)
   {
     insertCase1(forBalance);
-    return;
   }
   else
   {
@@ -566,11 +565,7 @@ void RBT< Key_t, Value_t, KeyComp >::insertCase2(Node* inserted)
 #ifdef TEST_MODE
   iter += 1;
 #endif
-  if (inserted->p_->isBlack)
-  {
-    return;
-  }
-  else
+  if (!inserted->p_->isBlack)
   {
     insertCase3(inserted);
   }

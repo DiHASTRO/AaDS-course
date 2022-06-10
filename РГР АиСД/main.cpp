@@ -1,4 +1,5 @@
 // #define TREE_OUT
+#define TREE_OUT
 
 #ifdef TREE_OUT
   #define COLORFUL
