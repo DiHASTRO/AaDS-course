@@ -28,14 +28,6 @@ int main()
   {
     numbers.insert(i, 1.0 * i * i);
   }
-  for (int i = 0; i < 100; i++)
-  {
-    numbers.insert_or_transform(i, 1.0 * i * i, [&](double curr)
-      {
-        return std::powl(curr, 1.5);
-      });
-  }
-
   numbers.printTree(std::cout);
   std::cout << '\n' << numbers.at(10) << '\n';
 #else
