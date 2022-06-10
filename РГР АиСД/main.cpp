@@ -52,7 +52,7 @@ int main()
     }
     catch (const std::invalid_argument& e)
     {
-      std::cerr << e.what();
+      std::cerr << e.what() << '\n';
     }
   }
 #endif

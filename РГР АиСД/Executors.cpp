@@ -63,4 +63,5 @@ void executeCommand(Dictionary& dict, const std::string& command, std::ostream& 
   {
     raiseUnexistingCommand();
   }
+  out << '\n';
 }
